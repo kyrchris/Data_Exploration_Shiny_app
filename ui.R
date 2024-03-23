@@ -4,8 +4,6 @@ ui <- fluidPage(
     sidebarPanel(
       selectInput("choice","Please select the type of document that you will uplaod: ",choices = c("xlsx","csv")),
       fileInput("file", "Upload your file: "),
-      
-      
       uiOutput("select_vars"),
       uiOutput("filter_vars")
     ),
