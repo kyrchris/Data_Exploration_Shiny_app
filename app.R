@@ -1,0 +1,11 @@
+library(shiny)
+library(dplyr)
+library(ggplot2)
+library(shinyWidgets)
+library(openxlsx)
+library(shinyjs)
+library(shinydashboard)
+library(ggplot2)
+library(plotly)
+# Run the application
+shinyApp(ui = ui, server = server)
