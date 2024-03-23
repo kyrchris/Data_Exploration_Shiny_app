@@ -1,5 +1,5 @@
 server <- function(input, output, session) {
-  # Read uploaded CSV file
+  # Read uploaded file
   data <- reactive({
     req(input$choice)
     req(input$file)
@@ -54,7 +54,7 @@ server <- function(input, output, session) {
   })
   
   
-  # Display summary statistics
+  # Display table of the data that can be filtered with the sliders
   
   filtered_data <- reactive({    
     req(input$x_var)
@@ -64,9 +64,8 @@ server <- function(input, output, session) {
     for (var in names(data()[sapply(data(), is.numeric)])) {
       if (is.numeric(filtered_data[[input$x_var]])) {
         slider_values <- input[[paste0("slider",var)]]
-        #print(input[[paste0("slider",var)]])
-        filtered_data <- filtered_data[filtered_data[[var]] <= min(slider_values),] #&
-                                         #filtered_data[[input$x_var]] <= , ]
+        filtered_data <- filtered_data[filtered_data[[var]] <= min(slider_values),]
+                                       
       }
    }
     
@@ -78,9 +77,5 @@ server <- function(input, output, session) {
       filtered_data()
     })
   })
-    
-      
-    
-    
   
 }
