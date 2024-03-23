@@ -36,7 +36,7 @@ server <- function(input, output, session) {
     
     # Count the frequency of each category
     data_counts <- table(data()[[input$x_var]])
-    
+    data_counts[is.na(data_counts)] <- 0 
     # Convert to data frame
     data_df <- as.data.frame(data_counts)
     colnames(data_df) <- c("Category", "Frequency")
@@ -59,7 +59,7 @@ server <- function(input, output, session) {
   filtered_data <- reactive({    
     req(input$x_var)
     filtered_data <- data()
-    
+    filtered_data[is.na(filtered_data)] <- 0 
     # Apply filters based on slider values
     for (var in names(data()[sapply(data(), is.numeric)])) {
       if (is.numeric(filtered_data[[input$x_var]])) {
